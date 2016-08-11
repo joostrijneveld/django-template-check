@@ -4,6 +4,7 @@ from django.core.management.base import BaseCommand
 from django import template
 
 import os
+import sys
 from itertools import chain
 
 
@@ -27,9 +28,12 @@ class Command(BaseCommand):
     help = "Perform (minimal) syntax checks for Django templates."
 
     def handle(self, *args, **options):
+        return_code = 0
         for t_name in _template_names():
             try:
                 t = template.Template(template.loader.get_template(t_name))
                 t.render(template.Context())
             except Exception as e:
                 print('{}: {}'.format(t_name, e))
+                return_code = 1
+        sys.exit(return_code)
