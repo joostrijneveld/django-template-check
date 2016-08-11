@@ -17,9 +17,9 @@ Simply get the package from ``pip``:
 
 ::
 
-    pip install django-embed-template
+    pip install django-template-check
 
-Then make sure to add ``django_embed_template`` to your ``INSTALLED_APPS`` in your ``settings.py``.
+Then make sure to add ``django_template_check`` to your ``INSTALLED_APPS`` in your ``settings.py``.
 
 Usage
 -----

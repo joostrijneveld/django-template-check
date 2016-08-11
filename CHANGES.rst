@@ -1,6 +1,11 @@
 django-template-check Changelog
 ===============================
 
+0.2.1 (2016-08-11)
+------------------
+
+- Fix a typo in the install instructions
+
 0.2.0 (2016-08-11)
 ------------------
 
