@@ -31,6 +31,8 @@ After installing this package, simply use it by calling the management command:
     python manage.py templatecheck
 
 
+Optionally, only check templates that live inside the project directory by specifying the ``--project-only`` flag. This can be useful to ignore errors in 3rd party dependencies.
+
 License
 -------
 
