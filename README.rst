@@ -1,5 +1,8 @@
-django-template-check
-=====================
+django-template-check |travis|
+==============================
+
+.. |travis| image:: https://travis-ci.org/joostrijneveld/django-template-check.svg?branch=master
+    :target: https://travis-ci.org/joostrijneveld/django-template-check
 
 This package makes it possible to easily check for basic syntax errors in all loaded Django templates. This can be useful as part of a continuous integration step in a build process, so as not to discover these problems at runtime.
 
