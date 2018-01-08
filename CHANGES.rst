@@ -1,6 +1,11 @@
 django-template-check Changelog
 ===============================
 
+0.3.1 (2018-01-08)
+------------------
+
+- Fix Django 2.0 support (thanks to Thom Wiggers).
+
 0.3.0 (2016-08-25)
 ------------------
 

@@ -11,7 +11,7 @@ Currently, checking is very minimal, simply relying on the exceptions raised by 
 Requirements
 ------------
 
-This package requires Django version 1.8 or greater, and has been tested with 1.10.
+This package requires Django version 1.8 or greater, and has been tested with 1.10, 1.11 and 2.0.
 
 Installation
 ------------
