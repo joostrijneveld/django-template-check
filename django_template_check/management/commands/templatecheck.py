@@ -1,3 +1,4 @@
+import django
 from django.conf import settings
 from django.template.loaders.app_directories import get_app_template_dirs
 from django.core.management.base import BaseCommand
@@ -5,7 +6,11 @@ from django import template
 
 import os
 import sys
+import logging
 from itertools import chain
+
+
+logger = logging.getLogger(__name__)
 
 
 def _template_names(proj_only=False):
@@ -39,9 +44,17 @@ class Command(BaseCommand):
         return_code = 0
         for t_name in _template_names(options['project_only']):
             try:
-                t = template.Template(template.loader.get_template(t_name))
+                if django.VERSION < (2,):
+                    # Prior to 2.0, we need to pass the template to
+                    # template.Template()
+                    tpl = template.loader.get_template(t_name)
+                else:
+                    # post 2.0, template.Template() expects the template
+                    # location
+                    tpl = t_name
+                t = template.Template(tpl)
                 t.render(template.Context())
             except Exception as e:
-                print('{}: {}'.format(t_name, e))
+                logging.exception('{}: {}'.format(t_name, e))
                 return_code = 1
         sys.exit(return_code)
