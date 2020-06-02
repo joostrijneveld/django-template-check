@@ -11,7 +11,7 @@ Currently, checking is very minimal, simply relying on the exceptions raised by 
 Requirements
 ------------
 
-This package requires Django version 1.8 or greater, and has been tested with 1.10, 1.11 and 2.0.
+This package requires Django version 1.8 or greater, and has been tested with 2.2 and 3.0
 
 Installation
 ------------
@@ -23,6 +23,7 @@ Simply get the package from ``pip``:
     pip install django-template-check
 
 Then make sure to add ``django_template_check`` to your ``INSTALLED_APPS`` in your ``settings.py``.
+It also requires the ``BASE_DIR`` setting to exist in your ``settings.py``, which should be present if you used the Django ``startproject`` template.
 
 Usage
 -----
