@@ -12,22 +12,26 @@ from itertools import chain
 
 logger = logging.getLogger(__name__)
 
+#: Supported Django backend
+DJANGO_BACKEND = 'django.template.backends.django.DjangoTemplates'
+
 
 def _template_names(proj_only=False):
     for engine in settings.TEMPLATES:
-        if (engine['BACKEND']
-                == 'django.template.backends.django.DjangoTemplates'):
-            for template_dir in chain(engine['DIRS'],
-                                      get_app_template_dirs('templates')):
-                if not proj_only or template_dir.startswith(settings.BASE_DIR):
-                    for dirpath, dirnames, filenames in os.walk(template_dir):
-                        for template_name in filenames:
-                            yield os.path.join(dirpath[len(template_dir)+1:],
-                                               template_name)
-        else:
+        if engine['BACKEND'] != DJANGO_BACKEND:
             raise NotImplementedError(
                 "Currently only supports default DjangoTemplates backend."
             )
+
+        for template_dir in chain(
+                engine['DIRS'], get_app_template_dirs('templates')):
+            template_dir = str(template_dir)  # coerce pathlike
+            if not proj_only or (template_dir.startswith(
+                    str(settings.BASE_DIR))):
+                for dirpath, _dirnames, filenames in os.walk(template_dir):
+                    for template_name in filenames:
+                        yield os.path.join(
+                            dirpath[len(template_dir)+1:], template_name)
 
 
 class Command(BaseCommand):
@@ -55,6 +59,6 @@ class Command(BaseCommand):
                 t = template.Template(tpl)
                 t.render(template.Context())
             except Exception as e:
-                logging.exception('{}: {}'.format(t_name, e))
+                logging.exception('%s: %s', t_name, e)
                 return_code = 1
         sys.exit(return_code)
