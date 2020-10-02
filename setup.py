@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 setup(
     name='django-template-check',
-    version='0.3.1',
+    version='0.4.0',
     description='Perform (minimal) syntax checks for Django templates.',
     long_description="\n".join([open('README.rst').read(),
                                 open('CHANGES.rst').read()]),
