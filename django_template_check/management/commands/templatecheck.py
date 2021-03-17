@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 DJANGO_BACKEND = 'django.template.backends.django.DjangoTemplates'
 
 
-def _template_names(proj_only=False):
+def _template_names(proj_only):
     for engine in settings.TEMPLATES:
         if engine['BACKEND'] != DJANGO_BACKEND:
             raise NotImplementedError(
@@ -47,6 +47,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         return_code = 0
         for t_name in _template_names(options['project_only']):
+            if options['verbosity'] > 1:
+                print('Check %s' % t_name)
             try:
                 if django.VERSION < (2,):
                     # Prior to 2.0, we need to pass the template to
