@@ -4,7 +4,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='django-template-check',
-    version='0.4.0',
+    version='0.4.1',
     description='Perform (minimal) syntax checks for Django templates.',
     long_description="\n".join([open('README.rst').read(),
                                 open('CHANGES.rst').read()]),
