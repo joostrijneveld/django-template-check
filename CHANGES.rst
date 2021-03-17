@@ -1,6 +1,14 @@
 django-template-check Changelog
 ===============================
 
+0.4.1 (2021-03-17)
+------------------
+Print templates checked with verbosity 2 or higher.
+
+0.4.0 (TODO)
+------------
+TODO
+
 0.3.1 (2018-01-08)
 ------------------
 
